@@ -1,2 +1,11 @@
-package br.com.supera.game.store;public class GameStoreApplication {
+package br.com.supera.game.store;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GameStoreApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(GameStoreApplication.class, args);
+    }
 }
