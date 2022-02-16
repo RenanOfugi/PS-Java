@@ -2,6 +2,7 @@ package br.com.supera.game.store;
 
 import java.util.List;
 
+import br.com.supera.game.store.entity.Product;
 import com.github.dbunit.rules.DBUnitRule;
 import com.github.dbunit.rules.api.configuration.DBUnit;
 import com.github.dbunit.rules.api.dataset.DataSet;
@@ -31,7 +32,7 @@ public class ProductDaoExampleTest {
     @DataSet("products.yml") 
     public void shouldListProducts() {
 		try {
-			List<Product> products = em(). 
+			List<Product> products = em().
 					createQuery("select p from Product p").
 					getResultList();
 			assertNotNull(products);
