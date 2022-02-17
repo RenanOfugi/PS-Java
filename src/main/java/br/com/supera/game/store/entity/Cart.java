@@ -22,7 +22,7 @@ public class Cart {
 
     private BigDecimal total;
 
-    private BigDecimal shipping_cost;
+    private BigDecimal shippingCost;
 
     @OneToMany
     private List<Product> products;
