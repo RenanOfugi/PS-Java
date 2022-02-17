@@ -4,10 +4,8 @@ import br.com.supera.game.store.entity.Product;
 import br.com.supera.game.store.service.GameStoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,11 @@ public class GameStoreController {
     @GetMapping
     public List<Product> listAllProducts(){
         return service.listAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public String createProduct(@RequestBody Product product){
+        return service.createProduct(product);
     }
 }
