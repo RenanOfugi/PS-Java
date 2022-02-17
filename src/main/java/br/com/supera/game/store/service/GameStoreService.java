@@ -18,4 +18,9 @@ public class GameStoreService {
     public List<Product> listAll() {
         return repository.findAll();
     }
+
+    public String createProduct(Product product) {
+        Product productSave = repository.save(product);
+        return "Produto " + productSave.id + " criado com sucesso";
+    }
 }
