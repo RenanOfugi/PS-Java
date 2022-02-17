@@ -6,7 +6,9 @@ import lombok.Setter;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,4 +23,7 @@ public class Cart {
     private BigDecimal total;
 
     private BigDecimal shipping_cost;
+
+    @OneToMany
+    private List<Product> products;
 }
