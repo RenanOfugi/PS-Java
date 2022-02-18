@@ -1,5 +1,6 @@
 package br.com.supera.game.store.controller;
 
+import br.com.supera.game.store.entity.Cart;
 import br.com.supera.game.store.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class CartController {
 
     @PostMapping
     public String addProduct(@RequestParam("id") Long id){
-        return service.addToCart(id);
+
+        Cart cart = service.findById(1L); //Foi utilizado 1L referente ao 1 carrinho de compras, para o desafio
+        return service.addToCart(id, cart);
     }
 }
