@@ -14,6 +14,12 @@ import java.util.List;
 @Setter
 public class Cart {
 
+    public Cart(BigDecimal subtotal, BigDecimal total, BigDecimal shippingCost) {
+        this.subtotal = subtotal;
+        this.total = total;
+        this.shippingCost = shippingCost;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
