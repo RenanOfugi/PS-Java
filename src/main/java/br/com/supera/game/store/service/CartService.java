@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,9 +21,27 @@ public class CartService {
     private final CartRepository cartRepository;
 
     public String addToCart(Long id, Long idCart) {
-        Product product = gameStoreService.findById(id);
 
+        Product product = gameStoreService.findById(id);
         Cart cart = findById(idCart);
+
+        BigDecimal subtotal = cart.getSubtotal().add(product.getPrice());
+        BigDecimal shippingCost;
+
+        if(subtotal.compareTo(new BigDecimal("250")) > 0){
+            shippingCost = BigDecimal.ZERO;
+        } else {
+            shippingCost = cart.getShippingCost().add(BigDecimal.TEN);
+        }
+
+        BigDecimal total = subtotal.add(shippingCost);
+        List<Product> products = cart.getProducts();
+
+        cart.setSubtotal(subtotal);
+        cart.setShippingCost(shippingCost);
+        cart.setTotal(total);
+        cart.setProducts(products.add(product));
+
         return "";
     }
 
