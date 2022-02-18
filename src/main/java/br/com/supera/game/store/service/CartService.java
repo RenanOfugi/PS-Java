@@ -20,10 +20,19 @@ public class CartService {
     @Autowired
     private final CartRepository cartRepository;
 
-    public String addToCart(Long id, Long idCart) {
+    public String addToCart(Long id, Cart cart) {
 
         Product product = gameStoreService.findById(id);
-        Cart cart = findById(idCart);
+        cart = updateDataCart(cart, product);
+
+        return "";
+    }
+
+    public Cart findById(Long id){
+        return cartRepository.findById(id).orElse(new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO));
+    }
+
+    public Cart updateDataCart(Cart cart, Product product){
 
         BigDecimal subtotal = cart.getSubtotal().add(product.getPrice());
         BigDecimal shippingCost;
@@ -36,16 +45,15 @@ public class CartService {
 
         BigDecimal total = subtotal.add(shippingCost);
         List<Product> products = cart.getProducts();
+        products.add(product);
 
         cart.setSubtotal(subtotal);
         cart.setShippingCost(shippingCost);
         cart.setTotal(total);
-        cart.setProducts(products.add(product));
+        cart.setProducts(products);
 
-        return "";
+        return cart;
     }
 
-    public Cart findById(Long id){
-        return cartRepository.findById(id).orElse(new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO));
-    }
+    
 }
