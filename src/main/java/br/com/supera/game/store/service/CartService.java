@@ -2,6 +2,7 @@ package br.com.supera.game.store.service;
 
 import br.com.supera.game.store.entity.Cart;
 import br.com.supera.game.store.entity.Product;
+import br.com.supera.game.store.exceptions.ProductExistException;
 import br.com.supera.game.store.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,7 +32,7 @@ public class CartService {
     }
 
     public Cart findById(Long id){
-        return cartRepository.findById(id).orElse(new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO));
+        return cartRepository.findById(id).orElse(new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO, new ArrayList<>()));
     }
 
     public Cart updateDataCart(Cart cart, Product product){
@@ -57,7 +59,14 @@ public class CartService {
     }
 
     public String insertCart(Cart cart){
-        Cart cartSave = cartRepository.save(cart);
+
+        Cart cartSave = null;
+        try{
+            cartSave = cartRepository.save(cart);
+        } catch (RuntimeException exception){
+            throw new ProductExistException("Product already exist in cart");
+        }
+
         return "Insert Cart " + cartSave.getId() + ": " + HttpStatus.OK;
     }
 
