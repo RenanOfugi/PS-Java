@@ -15,10 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 public class Cart {
 
-    public Cart(BigDecimal subtotal, BigDecimal total, BigDecimal shippingCost) {
+    public Cart(BigDecimal subtotal, BigDecimal total, BigDecimal shippingCost, List<Product> products) {
         this.subtotal = subtotal;
         this.total = total;
         this.shippingCost = shippingCost;
+        this.products = products;
     }
 
     @Id
@@ -34,6 +35,17 @@ public class Cart {
     @NotBlank
     private BigDecimal shippingCost;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Product> products;
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", subtotal=" + subtotal +
+                ", total=" + total +
+                ", shippingCost=" + shippingCost +
+                ", products=" + products +
+                '}';
+    }
 }
