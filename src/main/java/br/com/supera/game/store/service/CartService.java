@@ -25,8 +25,8 @@ public class CartService {
 
         Product product = gameStoreService.findById(id);
         cart = updateDataCart(cart, product);
-        
-        return "";
+
+        return insertCart(cart);
     }
 
     public Cart findById(Long id){
@@ -59,5 +59,9 @@ public class CartService {
     public String insertCart(Cart cart){
         Cart cartSave = cartRepository.save(cart);
         return "Insert Cart " + cartSave.getId() + ": " + HttpStatus.OK;
+    }
+
+    public List<Cart> listAll() {
+        return cartRepository.findAll();
     }
 }
