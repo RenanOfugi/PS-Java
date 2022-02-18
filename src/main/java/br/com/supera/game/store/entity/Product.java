@@ -1,24 +1,36 @@
 package br.com.supera.game.store.entity;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Product {
 
    @Id
-   @GeneratedValue
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    public long id;
 
-   public String name;
+   @NotBlank
+   private String name;
 
-   public BigDecimal price;
+   @NotBlank
+   private BigDecimal price;
 
-   public short score;
+   @NotBlank
+   private short score;
 
-   public String image;
+   private String image;
 
 }
