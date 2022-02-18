@@ -5,6 +5,7 @@ import br.com.supera.game.store.entity.Product;
 import br.com.supera.game.store.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -24,7 +25,7 @@ public class CartService {
 
         Product product = gameStoreService.findById(id);
         cart = updateDataCart(cart, product);
-
+        
         return "";
     }
 
@@ -55,5 +56,8 @@ public class CartService {
         return cart;
     }
 
-    
+    public String insertCart(Cart cart){
+        Cart cartSave = cartRepository.save(cart);
+        return "Insert Cart " + cartSave.getId() + ": " + HttpStatus.OK;
+    }
 }
