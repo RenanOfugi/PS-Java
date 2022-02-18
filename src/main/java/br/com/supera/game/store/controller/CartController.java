@@ -20,7 +20,7 @@ public class CartController {
     @PostMapping
     public String addProduct(@RequestParam("id") Long id){
 
-        Cart cart = service.findById(1L); //Foi utilizado 1L referente ao 1 carrinho de compras, para o desafio
+        Cart cart = service.findById(1L); //Foi utilizado 1L referente ao primeiro carrinho de compras, para o desafio
         return service.addToCart(id, cart);
     }
 
