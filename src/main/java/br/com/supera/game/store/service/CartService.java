@@ -60,7 +60,7 @@ public class CartService {
 
     public String insertCart(Cart cart){
 
-        Cart cartSave = null;
+        Cart cartSave;
         try{
             cartSave = cartRepository.save(cart);
         } catch (RuntimeException exception){
