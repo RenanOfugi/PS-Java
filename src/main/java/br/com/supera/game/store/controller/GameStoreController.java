@@ -23,6 +23,11 @@ public class GameStoreController {
         return service.listAll();
     }
 
+    @GetMapping("/{id}")
+    public Product findById(@PathVariable Long id){
+        return service.findById(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String createProduct(@Valid @RequestBody Product product){
