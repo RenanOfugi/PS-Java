@@ -1,17 +1,18 @@
 package br.com.supera.game.store.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Cart {
 
     public Cart(BigDecimal subtotal, BigDecimal total, BigDecimal shippingCost) {
@@ -24,10 +25,13 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
     private BigDecimal subtotal;
 
+    @NotBlank
     private BigDecimal total;
 
+    @NotBlank
     private BigDecimal shippingCost;
 
     @OneToMany
