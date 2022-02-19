@@ -20,7 +20,14 @@ public class CartController {
     @PostMapping("/{id-cart}/product/{id-product}/add")
     public String addProduct(@PathVariable("id-cart") Long idCart,@PathVariable("id-product") Long idVar){
 
-        Cart cart = service.findById(idCart);
+        Cart cart;
+
+        try {
+            cart = service.findById(idCart);
+        } catch (RuntimeException e){
+            cart = new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO, new ArrayList<>());
+        }
+
         return service.addToCart(idVar, cart);
     }
 
