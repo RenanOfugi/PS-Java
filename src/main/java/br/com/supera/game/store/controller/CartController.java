@@ -19,7 +19,7 @@ public class CartController {
     @Autowired
     private final CartService service;
 
-    @PostMapping("/{id-cart}/product/{id-product}/add")
+    @PostMapping("/{id-cart}/products/{id-product}/add")
     public String addProduct(@PathVariable("id-cart") Long idCart,@PathVariable("id-product") Long idVar){
 
         Cart cart;
@@ -33,7 +33,7 @@ public class CartController {
         return service.addToCart(idVar, cart);
     }
 
-    @DeleteMapping("/{id-cart}/product/{id-product}/remove")
+    @DeleteMapping("/{id-cart}/products/{id-product}/remove")
     public String deleteProduct(@PathVariable("id-cart") Long idCart,@PathVariable("id-product") Long idVar){
 
         Cart cart;
