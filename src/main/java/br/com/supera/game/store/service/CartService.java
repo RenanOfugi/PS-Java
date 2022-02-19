@@ -2,6 +2,7 @@ package br.com.supera.game.store.service;
 
 import br.com.supera.game.store.entity.Cart;
 import br.com.supera.game.store.entity.Product;
+import br.com.supera.game.store.exceptions.CartNotFoundException;
 import br.com.supera.game.store.exceptions.ProductExistException;
 import br.com.supera.game.store.exceptions.ProductNotFoundException;
 import br.com.supera.game.store.repository.CartRepository;
@@ -11,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,7 +40,7 @@ public class CartService {
     }
 
     public Cart findById(Long id){
-        return cartRepository.findById(id).orElse(new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO, new ArrayList<>()));
+        return cartRepository.findById(id).orElseThrow(()-> new CartNotFoundException("Cart not exist"));
     }
 
     public Cart updateSumDataCart(Cart cart, Product product){
