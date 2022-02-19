@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/store")
+@RequestMapping(value = "/api/v1/store/products")
 @RequiredArgsConstructor
 public class GameStoreController {
 
