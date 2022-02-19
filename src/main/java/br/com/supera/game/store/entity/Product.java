@@ -7,31 +7,30 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
+@Table(name = "product")
 public class Product {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    public long id;
 
-   @NotBlank
+   @NotBlank @Column
    private String name;
 
-   @NotBlank
+   @NotBlank @Column
    private BigDecimal price;
 
-   @NotBlank
+   @NotBlank @Column
    private short score;
 
+   @Column
    private String image;
 
    @Override
