@@ -100,7 +100,7 @@ public class CartService {
             throw new ProductExistException("Product already exist in cart");
         }
 
-        return "Insert Cart " + cartSave.getId() + ": " + HttpStatus.OK;
+        return "Insert Cart " + cartSave.getId() + " in database: " + HttpStatus.OK;
     }
 
     public List<Cart> listAll() {
