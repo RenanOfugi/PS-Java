@@ -9,6 +9,5 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ProductExistException extends RuntimeException {
     public ProductExistException(String message){
         super(message);
-        Logger.warn("");
     }
 }
