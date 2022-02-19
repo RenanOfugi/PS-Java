@@ -50,7 +50,7 @@ public class CartService {
         BigDecimal subtotal = cart.getSubtotal().add(product.getPrice());
         BigDecimal shippingCost;
 
-        if(subtotal.compareTo(new BigDecimal("250")) > 0){
+        if(subtotal.compareTo(new BigDecimal("250")) >= 0){
             shippingCost = BigDecimal.ZERO;
         } else {
             shippingCost = cart.getShippingCost().add(BigDecimal.TEN);
@@ -76,7 +76,7 @@ public class CartService {
         BigDecimal subtotal = cart.getSubtotal().subtract(product.getPrice());
         BigDecimal shippingCost;
 
-        if(subtotal.compareTo(new BigDecimal("250")) > 0){
+        if(subtotal.compareTo(new BigDecimal("250")) >= 0){
             shippingCost = BigDecimal.ZERO;
         } else {
             shippingCost = BigDecimal.TEN.multiply(new BigDecimal(cart.getProducts().size()));
