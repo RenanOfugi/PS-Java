@@ -27,10 +27,4 @@ public class GameStoreController {
     public Product findById(@PathVariable Long id){
         return service.findById(id);
     }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public String createProduct(@Valid @RequestBody Product product){
-        return service.createProduct(product);
-    }
 }
