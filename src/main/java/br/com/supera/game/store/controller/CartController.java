@@ -1,7 +1,7 @@
 package br.com.supera.game.store.controller;
 
 import br.com.supera.game.store.entity.Cart;
-import br.com.supera.game.store.entity.Product;
+import br.com.supera.game.store.exceptions.InvalidParametersException;
 import br.com.supera.game.store.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +54,15 @@ public class CartController {
     @GetMapping("/{id-cart}")
     public Cart findById(@PathVariable("id-cart") Long id){
         return service.findById(id);
+    }
+
+    @GetMapping("/{id-cart}/sort/{field}/{sort}")
+    public Cart findByIdSort(@PathVariable("id-cart") Long id, @PathVariable("field") String field ,@PathVariable("sort") String sort){
+
+        if (!sort.equals("asc") && !sort.equals("desc")){
+            throw new InvalidParametersException("Invalid Sort Parameter");
+        }
+
+        return service.findByIdSort(id, field,sort);
     }
 }
