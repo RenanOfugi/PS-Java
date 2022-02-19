@@ -52,7 +52,7 @@ public class CartController {
     }
 
     @GetMapping("/{id-cart}")
-    public Cart findById(@PathVariable Long id){
+    public Cart findById(@PathVariable("id-cart") Long id){
         return service.findById(id);
     }
 }
