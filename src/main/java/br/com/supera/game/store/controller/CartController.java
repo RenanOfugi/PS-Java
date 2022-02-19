@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,5 +49,10 @@ public class CartController {
     @GetMapping
     public List<Cart> listAllCart(){
         return service.listAll();
+    }
+
+    @GetMapping("/{id-cart}")
+    public Cart findById(@PathVariable Long id){
+        return service.findById(id);
     }
 }
