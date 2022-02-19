@@ -1,0 +1,14 @@
+INSERT INTO  product (name, price, score, image) VALUES ('Garena Free Fire', 10.50, 10,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Framed', 2.99, 20,'');
+INSERT INTO  product (name, price, score, image) VALUES ('PUBG Mobile', 105.5, 90,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Angry Birds 2', 100, 645,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Mortal Kombat XL', 69.99, 150,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Hearthstone', 74.55, 200,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Pokémon Go', 125.87, 500,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Clash of Clans', 2.88, 5,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Candy Crush Saga', 233.89, 755,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Sonic Dash', 233.89, 35,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Gardenscapes', 23.90, 665,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Super Mario Run', 33.52, 895,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Fruit Ninja', 100.99, 400,'');
+INSERT INTO  product (name, price, score, image) VALUES ('Mobile Legends: Bang Bang', 58.45, 105,'');
