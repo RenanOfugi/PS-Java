@@ -1,40 +1,37 @@
 # Avaliação Java
 
+## Objetivo
+
+Este projeto visa atender os requisitos do desafio proposto pela Supera Tecnologia
 
 ## Descrição
 
-  O teste consiste em construir a camada de serviço de um pseudo ecommerce de games mobile utilizando Java
-
-## Como executar os testes
-  
-  O projeto usa o maven wrapper (mvnw).
-  Para executar os testes de exemplo basta o comando abaixo:
-  ```sh
-  ./mvnw clean test
-  ```
+Projeto de API de um pseudo ecommerce de games mobile utilizando Spring, em que é possível ter múltiplos carrinhos e cada um podendo ter múltiplos produtos. 
 
 ## Requisitos
 
-  - Existe um exemplo de carga de banco de dados em memória em [ProductDaoExampleTest.java](./src/test/java/br/com/supera/game/store/ProductDaoExampleTest.java)
-  - Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados dinamicamente
-  - O usuário poderá adicionar e remover produtos do carrinho
-  - O usuário poderá ordenar os produtos por preço, popularidade (score) e ordem alfabética.
-  - A cada produto adicionado, deve-se somar R$ 10,00 ao frete.
-  - Quando o valor dos produtos adicionados ao carrinho for igual ou superior a R$ 250,00, o frete é grátis.
+| Requisitos                                                   | Status | Endpoint                                                     | Método Requisição |
+| ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | ----------------- |
+| Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados dinamicamente | Feito  | **/api/v1/store/cart/{id do carrinho}** ou **/api/v1/store/cart** para ver todos os carrinhos | **GET**           |
+| O usuário poderá adicionar produtos do carrinho              | Feito  | **/api/v1/store/cart/{id do carrinho}/products/{id do produto para adicionar}/add** | **POST**          |
+| O usuário poderá remover produtos do carrinho                | Feito  | **/api/v1/store/cart/{id do carrinho}/products/{id do produto para adicionar}/remove** | **DELETE**        |
+| O usuário poderá ordenar os produtos por preço, popularidade (score) e ordem alfabética. | Feito  | **/api/v1/store/cart/{id do carrinho}/sort/{atributo}/{tipo de ordenação}** - Atributos: **name**, **price** ou **score**; Tipo de ordenação permitidos: **asc** ou **desc** | **GET**           |
+| A cada produto adicionado, deve-se somar R$ 10,00 ao frete.  | Feito  | Este requisito é atendido ao adicionar ou remover um produto ao carrinho - pode ser verificado juntamente com o requisito "**Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados dinamicamente**" | -                 |
+| Quando o valor dos produtos adicionados ao carrinho for igual ou superior a R$ 250,00, o frete é grátis. | Feito  | Este requisito é atendido ao adicionar ou remover um produto ao carrinho - pode ser verificado juntamente com o requisito "**Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados dinamicamente**" | -                 |
 
-## O que iremos avaliar
+# Detalhamento Técnico
 
-Levaremos em conta os seguintes critérios:
+## Tecnologias e Justificativas
 
-  - Cumprimento dos requisitos
-  - Qualidade do projeto de API e fluidez da DX
-  - Organização do código e boas práticas
-  - Domínio das linguagens, bibliotecas e ferramentas utilizadas
-  - Organização dos commits
-  - Escrita e cobertura de testes
+Este projeto foi implementado usando:
 
-## Sobre a entrega
+- **Spring Boot**: Devido ao meu maior conhecimento e pelo tempo de entrega do desafio, optei por essa ferramenta pela facilidade de configuração, me permitindo focar mais nas regras de negócio do projeto.
+- **HSQLDB**: Como o projeto inicial do desafio já utilizava este banco de dados em memória, optei por mantê-la. Banco de dados em memória tem a desvantagem de não manter a persistência dos dados, "zerando" tudo sempre que ela é inicializada, mas devido à restrição de tempo e por ser utilizada somente para este desafio, mantive a utilização do HSQLDB.
+- **Java 11**: Versão Java já configurada na máquina
+- **Maven**: Por ser o gerenciador de dependências clássico do Spring Boot
+- **Lombok**: Visa diminuir o código, gerando métodos como getters, setters, construtores e o padrão Builder, por exemplo, utilizando somente anotações.
 
-  - A API pode ser HTTP, Restful, WSDL/SOAP, HATEOAS ou gRCP mas deverá ser documentado no [README.md](./README.md) como executar/compilar/empacotar o projeto e quais os endpoints solicitados nos requisitos acima. 
-  - A versão do Java pode ser atualizada para 11 ou 14.
-  - Não existe restrição de framework (EE, Spring, Quarkus etc) mas será melhor avaliado se justificado no [README.md](./README.md) os motivos da decisão.
+## Dados populados no Banco de Dados
+
+Todos os dados de produtos são populados no HSQLDB a partir do arquivo **data.sql** localizado em **src/main/resources/data.sql**. Portanto, se for preciso modificar os dados iniciais e/ou adicionar mais produtos, é necessário apenas inserir novas linhas neste arquivo.
+
