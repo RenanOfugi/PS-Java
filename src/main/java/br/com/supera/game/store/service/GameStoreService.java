@@ -20,11 +20,6 @@ public class GameStoreService {
         return repository.findAll();
     }
 
-    public String createProduct(Product product) {
-        Product productSave = repository.save(product);
-        return "Produto " + productSave.id + " criado com sucesso";
-    }
-
     public Product findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new ProductNotFoundException("id inexistente"));
     }
