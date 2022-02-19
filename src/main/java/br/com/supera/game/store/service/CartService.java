@@ -26,7 +26,7 @@ public class CartService {
     public String addToCart(Long id, Cart cart) {
 
         Product product = gameStoreService.findById(id);
-        cart = updateDataCart(cart, product);
+        cart = updateSumDataCart(cart, product);
 
         return insertCart(cart);
     }
@@ -35,7 +35,9 @@ public class CartService {
         return cartRepository.findById(id).orElse(new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO, new ArrayList<>()));
     }
 
-    public Cart updateDataCart(Cart cart, Product product){
+    public Cart updateSumDataCart(Cart cart, Product product){
+
+        cart.getProducts().add(product);
 
         BigDecimal subtotal = cart.getSubtotal().add(product.getPrice());
         BigDecimal shippingCost;
@@ -47,13 +49,31 @@ public class CartService {
         }
 
         BigDecimal total = subtotal.add(shippingCost);
-        List<Product> products = cart.getProducts();
-        products.add(product);
 
         cart.setSubtotal(subtotal);
         cart.setShippingCost(shippingCost);
         cart.setTotal(total);
-        cart.setProducts(products);
+
+        return cart;
+    }
+
+    public Cart updateSubDataCart(Cart cart, Product product){
+
+        cart.getProducts().remove(product);
+        BigDecimal subtotal = cart.getSubtotal().subtract(product.getPrice());
+        BigDecimal shippingCost;
+
+        if(subtotal.compareTo(new BigDecimal("250")) > 0){
+            shippingCost = BigDecimal.ZERO;
+        } else {
+            shippingCost = BigDecimal.TEN.multiply(new BigDecimal(cart.getProducts().size()));
+        }
+
+        BigDecimal total = subtotal.add(shippingCost);
+
+        cart.setSubtotal(subtotal);
+        cart.setShippingCost(shippingCost);
+        cart.setTotal(total);
 
         return cart;
     }
