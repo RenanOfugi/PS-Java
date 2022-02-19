@@ -33,7 +33,14 @@ public class CartController {
 
     @DeleteMapping("/{id-cart}/product/{id-product}/remove")
     public String deleteProduct(@PathVariable("id-cart") Long idCart,@PathVariable("id-product") Long idVar){
-        Cart cart = service.findById(idCart);
+
+        Cart cart;
+        try {
+            cart = service.findById(idCart);
+        } catch (RuntimeException e){
+            cart = new Cart(BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO, new ArrayList<>());
+        }
+
         return service.removeToCart(idVar, cart);
     }
 
