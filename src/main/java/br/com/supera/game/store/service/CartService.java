@@ -3,6 +3,7 @@ package br.com.supera.game.store.service;
 import br.com.supera.game.store.entity.Cart;
 import br.com.supera.game.store.entity.Product;
 import br.com.supera.game.store.exceptions.ProductExistException;
+import br.com.supera.game.store.exceptions.ProductNotFoundException;
 import br.com.supera.game.store.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,13 @@ public class CartService {
 
         Product product = gameStoreService.findById(id);
         cart = updateSumDataCart(cart, product);
+
+        return insertCart(cart);
+    }
+
+    public String removeToCart(Long id, Cart cart) {
+        Product product = gameStoreService.findById(id);
+        cart = updateSubDataCart(cart, product);
 
         return insertCart(cart);
     }
@@ -59,7 +67,12 @@ public class CartService {
 
     public Cart updateSubDataCart(Cart cart, Product product){
 
-        cart.getProducts().remove(product);
+        boolean remove = cart.getProducts().remove(product);
+
+        if(!remove){
+            throw new ProductNotFoundException("Product not exist in cart");
+        }
+
         BigDecimal subtotal = cart.getSubtotal().subtract(product.getPrice());
         BigDecimal shippingCost;
 
