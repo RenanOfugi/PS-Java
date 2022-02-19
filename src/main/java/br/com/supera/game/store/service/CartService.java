@@ -7,11 +7,14 @@ import br.com.supera.game.store.exceptions.ProductExistException;
 import br.com.supera.game.store.exceptions.ProductNotFoundException;
 import br.com.supera.game.store.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -41,6 +44,28 @@ public class CartService {
 
     public Cart findById(Long id){
         return cartRepository.findById(id).orElseThrow(()-> new CartNotFoundException("Cart not exist"));
+    }
+
+    public Cart findByIdSort(Long id, String field,String sort) {
+        Cart cart = findById(id);
+
+        switch (field){
+            case "name":
+                cart.getProducts().sort(Comparator.comparing(Product::getName));
+                break;
+            case "price":
+                cart.getProducts().sort(Comparator.comparing(Product::getPrice));
+                break;
+            case "score":
+                cart.getProducts().sort(Comparator.comparing(Product::getScore));
+                break;
+        }
+
+        if (sort.equals("desc")){
+            Collections.reverse(cart.getProducts());
+        }
+
+        return cart;
     }
 
     public Cart updateSumDataCart(Cart cart, Product product){
