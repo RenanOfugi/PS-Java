@@ -17,11 +17,17 @@ public class CartController {
     @Autowired
     private final CartService service;
 
-    @PostMapping
+    @PostMapping("/add")
     public String addProduct(@RequestParam("id") Long id){
 
         Cart cart = service.findById(1L); //Foi utilizado 1L referente ao primeiro carrinho de compras, para o desafio
         return service.addToCart(id, cart);
+    }
+
+    @PostMapping("/remove")
+    public String deleteProduct(@RequestParam("id") Long id){
+        Cart cart = service.findById(1L);
+        return service.removeToCart(id, cart);
     }
 
     @GetMapping
