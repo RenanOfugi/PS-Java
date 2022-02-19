@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,4 +34,16 @@ public class Product {
 
    private String image;
 
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (!(o instanceof Product)) return false;
+      Product product = (Product) o;
+      return id == product.id && score == product.score && name.equals(product.name) && price.equals(product.price) && Objects.equals(image, product.image);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, name, price, score, image);
+   }
 }
