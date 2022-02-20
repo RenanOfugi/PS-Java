@@ -7,8 +7,6 @@ import br.com.supera.game.store.exceptions.ProductExistException;
 import br.com.supera.game.store.exceptions.ProductNotFoundException;
 import br.com.supera.game.store.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.mapping.Collection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -115,9 +113,8 @@ public class CartService {
 
     public String insertCart(Cart cart){
 
-        Cart cartSave;
         try{
-            cartSave = cartRepository.save(cart);
+            cartRepository.save(cart);
         } catch (RuntimeException exception){
             throw new ProductExistException("Product already exist in cart");
         }
