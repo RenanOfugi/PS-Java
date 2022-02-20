@@ -4,7 +4,6 @@ import br.com.supera.game.store.entity.Product;
 import br.com.supera.game.store.exceptions.ProductNotFoundException;
 import br.com.supera.game.store.repository.GameStoreRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
