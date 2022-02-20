@@ -33,7 +33,7 @@ Este projeto foi implementado usando:
 
 ## Dados populados no Banco de Dados
 
-Todos os dados de produtos são populados no HSQLDB a partir do arquivo **data.sql** localizado em **src/main/resources/data.sql**. Portanto, se for preciso modificar os dados iniciais e/ou adicionar mais produtos, é necessário apenas modificar ou inserir novas linhas neste arquivo.
+Todos os dados de produtos são populados no HSQLDB, ao inicializar o projeto, a partir do arquivo **data.sql** localizado em **src/main/resources/data.sql**. Portanto, se for preciso modificar os dados iniciais e/ou adicionar mais produtos, é necessário apenas modificar ou inserir novas linhas neste arquivo.
 
 ## Observações - alterações na classe Product fornecida
 
