@@ -302,3 +302,14 @@ Ex.: **www.localhost:8080/api/v1/store/cart/1** - estado inicial
 }
 ```
 
+## Plus - endpoint
+
+Alguns endpoints que não fazem parte dos requisitos do desafio, mas utilizei para consultar no processo de construção desde projeto.
+
+### GET /api/v1/store/products
+
+Retorna uma lista todos os produtos cadastrados no banco de dados.
+
+### GET /api/v1/store/products/{id}
+
+Retorna um produto específico do banco de dados
