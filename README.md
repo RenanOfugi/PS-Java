@@ -322,3 +322,7 @@ Retorna uma lista todos os produtos cadastrados no banco de dados.
 ### GET /api/v1/store/products/{id}
 
 Retorna um produto específico do banco de dados
+
+## Testes
+
+Para executar os testes, basta rodar a classe **CartServiceTest**, referente à classe de serviços, em uma IDE. Foi gasto um certo tempo tentando entender e configurar para permitir que a classe de teste acessasse os dados em @Autowired, já que aparecia um erro mostrando que as classes de teste deveriam ter construtor vazio e as variaveis em **final** exigem um construtor para elas. Outro erro que aparecia com frequência era relacionado ao fato do relacionamento ManytoMany ser FetchType.LAZY. E como seria uma má pratica modificar simplesmente para EAGER, não o fiz. Por esse motivo somado a restrição de tempo, não foi possível cobrir totalmente os testes.
