@@ -35,6 +35,15 @@ Este projeto foi implementado usando:
 
 Todos os dados de produtos são populados no HSQLDB a partir do arquivo **data.sql** localizado em **src/main/resources/data.sql**. Portanto, se for preciso modificar os dados iniciais e/ou adicionar mais produtos, é necessário apenas modificar ou inserir novas linhas neste arquivo.
 
+## Observações - alterações na classe Product fornecida
+
+Como foi necessário modificar a classe Product, fornecido pela empresa, vale ressaltar as seguintes modificações:
+
+- Foram alterados os modificadores de acesso iniciais da classe Product, de **public** para **private**, para manter o encapsulamento (um dos pilares da programação orientada a objetos).
+- Foram também adicionados anotações de validação e persistência como @NotBlank, @Column, @Table.
+- Foram adicionados anotações do Lombok, para reduzir código e aumentar a produtividade, gerando getters, setters e construtor com @Getter, @Setter e @RequiredArgsConstructor
+- Foram criados os métodos equals e hashcode para uso das Collections.
+
 ## Como executar o projeto
 
 Em um terminal, execute:

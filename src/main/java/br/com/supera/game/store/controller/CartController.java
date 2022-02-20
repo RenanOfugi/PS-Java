@@ -4,7 +4,6 @@ import br.com.supera.game.store.entity.Cart;
 import br.com.supera.game.store.exceptions.InvalidParametersException;
 import br.com.supera.game.store.service.CartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -16,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
 
-    @Autowired
     private final CartService service;
 
     @PostMapping("/{id-cart}/products/{id-product}/add")

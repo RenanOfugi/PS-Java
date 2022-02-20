@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GameStoreController {
 
-    @Autowired
     private final GameStoreService service;
 
     @GetMapping
