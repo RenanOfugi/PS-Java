@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 public class GameStoreService {
 
-    @Autowired
     private final GameStoreRepository repository;
 
     public List<Product> listAll() {

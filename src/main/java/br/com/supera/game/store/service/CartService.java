@@ -21,10 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartService {
 
-    @Autowired
     private final GameStoreService gameStoreService;
-
-    @Autowired
     private final CartRepository cartRepository;
 
     public String addToCart(Long id, Cart cart) {
